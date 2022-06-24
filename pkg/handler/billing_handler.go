@@ -65,6 +65,15 @@ func (h *Handler) Transfer(c *gin.Context) {
 	})
 }
 
+func (h *Handler) GetAllAccs(c *gin.Context) {
+	accounts, err := h.services.Billing.GetAllAccs()
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, accounts)
+}
+
 //
 //type getAllListsResponse struct {
 //	Data []todo.TodoList `json:"data"`

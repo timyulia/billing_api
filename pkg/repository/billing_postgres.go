@@ -94,6 +94,13 @@ func (r *BillingPostgres) Balance(id int) (int, error) {
 	return moneyAmount, err
 }
 
+func (r *BillingPostgres) GetAllAccs() ([]billing.Account, error) {
+	query := fmt.Sprintf("SELECT * from %s", accountsTable)
+	var accounts []billing.Account
+	err := r.db.Select(&accounts, query)
+	return accounts, err
+}
+
 func (r *BillingPostgres) checkBalance(id, amount int) (bool, error) {
 	query := fmt.Sprintf("SELECT amount FROM %s WHERE id=$1", accountsTable)
 	var currAmount int

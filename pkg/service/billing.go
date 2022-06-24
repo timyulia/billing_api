@@ -24,3 +24,7 @@ func (s *BillingService) Transfer(trans billing.TransferInfo) error {
 func (s *BillingService) Balance(id int) (int, error) {
 	return s.repo.Balance(id)
 }
+
+func (s *BillingService) GetAllAccs() ([]billing.Account, error) {
+	return s.repo.GetAllAccs()
+}

@@ -18,7 +18,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	api := router.Group("/bill")
 	{
 
-		//api.GET("/") //all bills
+		api.GET("/", h.GetAllAccs) //all bills
 		api.GET("/:id", h.Balance)
 		api.PUT("/", h.AddMoney)         // add money
 		api.PUT("/transfer", h.Transfer) //transaction
