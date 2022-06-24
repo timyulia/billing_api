@@ -3,13 +3,15 @@ package service
 import (
 	"billing"
 	"billing/pkg/repository"
+	"errors"
+	"fmt"
 )
 
 type BillingService struct {
 	repo repository.Billing
 }
 
-func NewTodoListService(repo repository.Billing) *BillingService {
+func NewBillingService(repo repository.Billing) *BillingService {
 	return &BillingService{repo: repo}
 }
 
@@ -18,6 +20,11 @@ func (s *BillingService) AddMoney(acc billing.Account) error {
 }
 
 func (s *BillingService) Transfer(trans billing.TransferInfo) error {
+	fmt.Println("hey")
+	if trans.Amount < 0 {
+		return errors.New("negative transfer amount")
+	}
+	fmt.Println(trans.Amount)
 	return s.repo.Transfer(trans)
 }
 

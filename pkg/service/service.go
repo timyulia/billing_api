@@ -18,6 +18,6 @@ type Service struct {
 
 func NewService(r *repository.Repository) *Service {
 	return &Service{
-		Billing: r.Billing,
+		Billing: NewBillingService(r.Billing),
 	}
 }
