@@ -48,7 +48,21 @@ func (h *Handler) Balance(c *gin.Context) {
 }
 
 func (h *Handler) Transfer(c *gin.Context) {
+	var input billing.TransferInfo
+	if err := c.BindJSON(&input); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
 
+	err := h.services.Billing.Transfer(input)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, statusResponse{
+		Status: "ok",
+	})
 }
 
 //

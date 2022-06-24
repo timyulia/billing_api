@@ -7,7 +7,7 @@ import (
 
 type Billing interface {
 	AddMoney(acc billing.Account) error
-	Transfer(idA, idB int) error
+	Transfer(trans billing.TransferInfo) error
 	Balance(id int) (int, error)
 }
 

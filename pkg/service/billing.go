@@ -17,8 +17,8 @@ func (s *BillingService) AddMoney(acc billing.Account) error {
 	return s.repo.AddMoney(acc)
 }
 
-func (s *BillingService) Transfer(idA, idB int) error {
-	return s.repo.Transfer(idA, idB)
+func (s *BillingService) Transfer(trans billing.TransferInfo) error {
+	return s.repo.Transfer(trans)
 }
 
 func (s *BillingService) Balance(id int) (int, error) {
